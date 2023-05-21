@@ -36,7 +36,7 @@ export const Navegation = ({ handleShowForm, handleShowSearch, handleShowHome, h
           <div
             className="w-[35px] h-[35px] rounded-full bg-blue-400 flex items-center justify-center ml-5"
             onClick={() => {
-              handleShowForm()
+              handleShowForm(true)
               handleShowHome(true)
             }}
           >
@@ -48,11 +48,15 @@ export const Navegation = ({ handleShowForm, handleShowSearch, handleShowHome, h
           <div className="w-[35px] h-[35px] rounded-full bg-blue-400 flex items-center justify-center "></div>
           <div
             className="w-[35px] h-[35px] rounded-full bg-blue-400 flex items-center justify-center"
-            onClick={handleSearch}
+            onClick={() => {
+              handleSearch()
+              handleShowHome(false)
+            }}
           >
             <HiSearch className="text-2xl" />
           </div>
           <div className="w-[35px] h-[35px] rounded-full flex items-center justify-center mr-5" onClick={() => {
+            handleShowForm(false)
             handleShowHome(true)
           }}>
             <FaTasks className="text-xl" />

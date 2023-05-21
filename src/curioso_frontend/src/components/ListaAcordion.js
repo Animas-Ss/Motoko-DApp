@@ -18,7 +18,8 @@ const ListaAcordion = ({
   handleDelete,
   handleComplete,
   loading,
-  handleUpdate
+  handleUpdate,
+  principal
 }) => {
   const [active, setActive] = useState(null);
   const [search, setSearch] = useState('');
@@ -70,7 +71,10 @@ const ListaAcordion = ({
     <article className="flex flex-col items-center justify-center w-full">
       { showEdit && <FormEdit editTask={editTask} setShowEdit={setShowEdit} setEditTask={setEditTask} handleUpdate={handleUpdate} loading={loading}/>}
       <div className="w-[350px] min-h-[400px] mt-20 mb-28 overflow-hidden xl:mt-28 flex flex-col gap-2">
-
+      <div className=' bg-slate-400 border-[4px] items-center border-slate-200 rounded-3xl flex w-[50px] h-[50px] hover:w-full overflow-hidden gap-4 transition-all duration-300'>
+      <div className='ml-3 font-bold'>ID</div>
+      <small>{principal}</small>
+      </div>
         {data.map((item, index) => {
           return (
             <div className={'flex flex-col items-center'} key={index}>

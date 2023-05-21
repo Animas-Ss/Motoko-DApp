@@ -11,6 +11,8 @@ import ListaAcordion from './components/ListaAcordion';
 import Spinner from './components/Spinner';
 import Login from './components/Login/Login';
 
+import { useConnect } from "@connect2ic/react";
+
 
 function App() {
   
@@ -20,6 +22,23 @@ function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [showHome, setShowHome] = useState(false);
   const [pending, setPending] = useState([])
+  const [permiso, setPermiso] = useState(false)
+
+  
+  const {principal, isConnected, activeProvider } = useConnect({
+    onConnect: () => {
+      setPermiso(true)
+    },
+    onDisconnect: () => {
+      if(isConnected === false){
+      setPermiso(false)
+      }
+    }
+  })
+
+  console.log(principal)
+  console.log(activeProvider)
+
 
 
   // Get the current counter value
@@ -45,8 +64,8 @@ function App() {
   }, [loading]);
 
   //show elements
-  const handleShowForm = () => {
-    setShowForm(!showForm);
+  const handleShowForm = (value) => {
+    setShowForm(value);
   };
   const handleShowSearch = () => {
     setShowSearch(!showSearch);
@@ -109,13 +128,15 @@ function App() {
   }
 
   return (
-    <div className="">
-      <Navegation
+    <div>
+     {
+      permiso ? ( <Navegation
         handleShowForm={handleShowForm}
         handleShowSearch={handleShowSearch}
         handleShowHome={handleShowHome}
         handleSearch={handleSearch}
-      />
+      />) : null
+     }
       {showHome ?       <>
       {showForm ? (
         <FormTask
@@ -133,9 +154,10 @@ function App() {
           handleComplete={handleComplete}
           loading={loading}
           handleUpdate={handleUpdate}
+          principal={principal}
         />
       )}
-      </>: <Login pending={pending} handleSearch={handleSearch} tasks={tasks} setPending={setPending}/>}
+      </>: <Login pending={pending} handleSearch={handleSearch} tasks={tasks} setPending={setPending} permiso={permiso}/>}
 
      
       {/* <ListaTask tasks={tasks}/> */}
