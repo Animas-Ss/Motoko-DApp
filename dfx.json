@@ -1,0 +1,29 @@
+{
+  "canisters": {
+    "curioso_backend": {
+      "main": "src/curioso_backend/main.mo",
+      "type": "motoko"
+    },
+    "curioso_frontend": {
+      "dependencies": [
+        "curioso_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/curioso_frontend/src/index.html"
+      },
+      "source": [
+        "src/curioso_frontend/assets",
+        "dist/curioso_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
