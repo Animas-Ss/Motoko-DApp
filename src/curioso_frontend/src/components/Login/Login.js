@@ -28,7 +28,7 @@ const Login = ({pending, handleSearch, tasks, setPending, permiso}) => {
       <ConnectDialog className="w-[100px] h-[100px] absolute -bottom-10 left-0 animate-bounce border-[6px] border-slate-700 px-4 py-2 bg-slate-400 flex flex-col justify-center items-center rounded-full z-20"/>
       </div>
       <div className="py-2 px-4 flex justify-center text-lg text-purple-700  items-center rounded-3xl border-[6px] border-slate-200 shadow-home hover:bg-slate-200">
-      <ConnectButton style={{width: "100%"}}>Conectar</ConnectButton>
+      <ConnectButton style={{width: "100%"}}>{permiso? "Desconnect" : "Connect"}</ConnectButton>
       </div>
       </div>
       {permiso ? (<div className="w-[340px] h-[400px] md:ml-16 flex flex-col overflow-y-auto pt-8 items-center justify-center">
